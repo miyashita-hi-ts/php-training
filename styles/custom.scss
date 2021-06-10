@@ -388,6 +388,9 @@ article.reply::before {
     --text-color: #fff;
 }
 
+h1 {
+    color: var(--text-color);
+}
 
 body {
     background: var(--body-bg);
