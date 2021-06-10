@@ -88,20 +88,6 @@ a {
     vertical-align:baseline;
     background:transparent;
 }
-/* カラーモード切り替え */
-.color-mode {
-    margin: 0 10px 10px 0;
-    text-align: right;
-    float: right;
-}
-
-.color-mode input {
-    display: none;
-}
-.color-mode label {
-    font-size: 13px;
-    cursor: pointer;
-}
 
 /* change colours to suit your needs */
 ins {
@@ -379,6 +365,21 @@ article.reply::before {
 }
 .color-mode input:checked + label:hover:after {
     background: #fff;
+}
+
+/* カラーモード切り替え */
+.color-mode {
+    margin: 0 10px 10px 0;
+    text-align: right;
+    float: right;
+}
+
+.color-mode input {
+    display: none;
+}
+.color-mode label {
+    font-size: 13px;
+    cursor: pointer;
 }
 
 /* ダークモード */
