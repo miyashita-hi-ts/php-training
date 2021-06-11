@@ -88,13 +88,7 @@ $pdo = null;
     <section class="post" data-message_id="<?php echo htmlspecialchars($value['id'], ENT_QUOTES, 'UTF-8'); ?>">
     <div class="btn-like <?php if(in_array($value['id'], $_SESSION['like_list'])) echo 'active'; ?>">
         <!-- 自分がいいねした投稿にはハートのスタイルを常に保持する -->
-        <i class="fa-heart fa-lg px-16
-        <?php
-            if(in_array($value['id'], $_SESSION['like_list'])){ //いいね押したらハートが塗りつぶされる
-                echo ' active fas';
-            }else{ //いいねを取り消したらハートのスタイルが取り消される
-                echo ' far';
-            }; ?>"></i>
+        <i class="fa-heart fa-lg px-16 far"></i>
         <span><?php echo $value['like_count']; ?></span>
     </div>
 </section>

@@ -1,9 +1,19 @@
 $(function(){
     if (!Cookies.get('like_active_messages')) {
-        Cookies.set('like_active_messages', []);
+        Cookies.set('like_active_messages', "");
     }
-    var active_messages = Cookies.get('like_active_messages');
-    console.log(active_messages.push(1));
+    var active_messages = Cookies.get('like_active_messages').split(';');
+    console.log(active_messages);
+    console.log($('section[data-message_id="' + active_messages[1] + '"]').text);
+    active_messages.forEach(message_id => {
+        if ($('section[data-message_id="' + message_id + '"]')) {
+            $selector = $('section[data-message_id="' + message_id + '"]')
+            $('section[data-message_id="' + message_id + '"] i').toggleClass('far')
+            $('section[data-message_id="' + message_id + '"] i').toggleClass('fas')
+            $('section[data-message_id="' + message_id + '"] i').toggleClass('active')
+            $selector.toggleClass('active');
+        }
+    });
     var $good = $('.btn-like'), //いいねボタンセレクタ
                 goodPostId, //投稿ID
                 isActive;
@@ -37,14 +47,14 @@ $(function(){
 
             if (isActive) {
                 active_messages.push(goodPostId);
-                Cookies.set('like_active_messages', active_messages);
+                Cookies.set('like_active_messages', active_messages.join(';'));
             } else {
                 for (i = 0; i < active_messages.length; i++) {
                     if (active_messages[i] == goodPostId) {
                         active_messages.splice(i, 1);
                     }
                 }
-                Cookies.set('like_active_messages', active_messages);
+                Cookies.set('like_active_messages', active_messages.join(';'));
             }
             console.log(Cookies.get('like_active_messages'));
         }).fail(function(msg) {
