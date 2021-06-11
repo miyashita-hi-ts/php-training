@@ -53,7 +53,7 @@ $pdo = null;
 ?>
 
 
-<h1>ひと言掲示板 管理ページ</h1>
+<h1>管理ページ</h1>
 <?php if( !empty($error_message) ): ?>
     <ul class="error_message">
 		<?php foreach( $error_message as $value ): ?>
@@ -64,6 +64,7 @@ $pdo = null;
 <section>
 
 <?php if( !empty($_SESSION['admin_login']) && $_SESSION['admin_login'] === true ): ?>
+
 
 <form method="get" action="./download.php">
     <select name="limit">

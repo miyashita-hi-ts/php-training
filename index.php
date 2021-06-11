@@ -85,7 +85,7 @@ if( !empty($_POST['btn_submit']) ) {
         }
 
         if( $res ) {
-          $_SESSION['success_message'] = 'メッセージを書き込みました。';
+            $_SESSION['success_message'] = 'メッセージを書き込みました。';
         } else {
             $error_message[] = '書き込みに失敗しました。';
         }
@@ -106,7 +106,6 @@ $pdo = null;
 ?>
 
 
-<h1>ひと言掲示板</h1>
 <?php if( empty($_POST['btn_submit']) && !empty($_SESSION['success_message']) ): ?>
     <p class="success_message"><?php echo htmlspecialchars( $_SESSION['success_message'], ENT_QUOTES, 'UTF-8'); ?></p>
     <?php unset($_SESSION['success_message']); ?>
@@ -118,6 +117,7 @@ $pdo = null;
 		<?php endforeach; ?>
 	</ul>
 <?php endif; ?>
+
 
 	<div>
 		<label for="view_name">表示名</label>

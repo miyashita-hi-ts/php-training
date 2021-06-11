@@ -307,12 +307,6 @@ article.reply::before {
     }
 }
 
-/* 通常モード */
-:root {
-    --body-bg: #fff;
-    --text-color: #000;
-}
-
 /* ダークモードOFF */
 .color-mode label:before {
     border: 2px solid #d0d0d0;
@@ -382,11 +376,63 @@ article.reply::before {
     cursor: pointer;
 }
 
+/* 通常モード */
+:root {
+    --body-bg: #e6e6e6;
+    --text-color: #000;
+    --backgroud-color: rgb(249, 249, 249);
+}
+
 /* ダークモード */
 [data-mode='dark'] {
-    --body-bg: #000;
+    --body-bg: #3b3b3b;
     --text-color: #fff;
+    --backgroud-color: rgb(207, 204, 205);
 }
+
+
+.serch_form {
+    margin: 0 10px 10px 0;
+    text-align: right;
+    float: right;
+}
+
+// ======================================
+// 検索フォーム
+// ======================================
+
+.search_container{
+    box-sizing: border-box;
+    position: relative;
+    border: 1px solid #999;
+    display: block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    height: 2.3em;
+    width: 260px;
+    overflow: hidden;
+  }
+  .search_container input[type="text"]{
+    border: none;
+    height: 2.0em;
+  }
+  .search_container input[type="text"]:focus {
+    outline: 0;
+  }
+  .search_container input[type="submit"]{
+    cursor: pointer;
+    font-family: FontAwesome;
+    font-size: 1.3em;
+    border: none;
+    background: none;
+    color: #3879D9;
+    position: relative;
+    width: 2.5em;
+    height: 2.5em;
+    right: 0;
+    top: -10px;
+    outline : none;
+  }
 
 h1 {
     color: var(--text-color);
@@ -398,4 +444,9 @@ body {
 
 article {
     color: var(--text-color);
+    background: var(--backgroud-color);
+}
+
+label {
+  color: var(--text-color);
 }
