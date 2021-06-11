@@ -106,12 +106,6 @@ $pdo = null;
 ?>
 
 
-    <!-- <label for="search">表示名検索</label> -->
-    <form id ="search" method="get" action="./search.php" class="search_container">
-        <input type="text" name="search_name" placeholder="表示名検索">
-        <!-- 送信ボタンを用意する -->
-        <input type="submit" name="search_submit" value="&#xf002">
-    </form>
 
 
 
@@ -127,6 +121,13 @@ $pdo = null;
 		<?php endforeach; ?>
 	</ul>
 <?php endif; ?>
+
+<!-- <label for="search">表示名検索</label> -->
+<form id ="search" method="get" action="./search.php" class="search_container">
+    <input type="text" name="search_name" placeholder="表示名検索">
+    <!-- 送信ボタンを用意する -->
+    <input type="submit" name="search_submit" value="&#xf002">
+</form>
 
 
 <form method="post">
