@@ -453,5 +453,19 @@ label {
 
 a {
   color: var(--text-color);
+}
 
+.btn-like{
+    display: inline-block;
+    padding: 5px 8px;
+    cursor: pointer;
+}
+.btn-like:hover{
+    color: #f44336;
+}
+.active{
+    color: #f44336;
+}
+.btn-like .active{
+    color: #f44336;
 }
