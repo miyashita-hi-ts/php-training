@@ -95,7 +95,7 @@ if( !empty($_POST['btn_submit']) ) {
         }
 
         if( $res ) {
-          $_SESSION['success_message'] = 'メッセージを書き込みました。';
+            $_SESSION['success_message'] = 'メッセージを書き込みました。';
         } else {
             $error_message[] = '書き込みに失敗しました。';
         }
@@ -132,6 +132,7 @@ $pdo = null;
 	</ul>
 <?php endif; ?>
 
+
 <form method="post">
 	<div>
 		<label for="view_name">表示名</label>
@@ -143,6 +144,12 @@ $pdo = null;
   </div>
 	<input type="submit" name="btn_submit" value="書き込む">
 </form>
+
+<p><a href="search.php">検索はこちらから</a></p>
+
+
+
+
 
 <section>
 <?php if (!empty($message_array)) {
