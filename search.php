@@ -31,10 +31,21 @@ try {
     $error_message[] = $e->getMessage();
 }
 
-if( !empty($_GET['search_submit']) ) {
+if( !empty($_GET['search_submit_name']) ) {
     try {
         $stmt = $pdo->prepare("SELECT view_name,message,post_date FROM message WHERE view_name LIKE ? ESCAPE '!' ORDER BY post_date DESC");
         $stmt->bindValue(1, '%' . $_GET["search_name"] . '%', PDO::PARAM_STR);
+        $stmt->execute();
+    } catch(Exception $e) {
+        // エラーが発生した時はロールバック
+        $pdo->rollBack();
+    }
+}
+
+if( !empty($_GET['search_submit_message']) ) {
+    try {
+        $stmt = $pdo->prepare("SELECT view_name,message,post_date FROM message WHERE message LIKE ? ESCAPE '!' ORDER BY post_date DESC");
+        $stmt->bindValue(1, '%' . $_GET["search_message"] . '%', PDO::PARAM_STR);
         $stmt->execute();
     } catch(Exception $e) {
         // エラーが発生した時はロールバック
@@ -66,7 +77,13 @@ $pdo = null;
     <form id ="search" method="get" action="./search.php" class="search_container">
         <input type="text" name="search_name" placeholder="表示名検索">
         <!-- 送信ボタンを用意する -->
-        <input type="submit" name="search_submit" value="&#xf002">
+        <input type="submit" name="search_submit_name" value="&#xf002">
+    </form>
+
+    <form id ="search" method="get" action="./search.php" class="search_container">
+        <input type="text" name="search_message" placeholder="メッセージ検索">
+        <!-- 送信ボタンを用意する -->
+        <input type="submit" name="search_submit_message" value="&#xf002">
     </form>
 
 <section>
