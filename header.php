@@ -31,4 +31,4 @@
   <?php endif; ?>
 
 
-<h1 style="font-size: 70px; float: left; display: contents; font-family: serif">ひと言掲示板!</h1>
+<h1 style="font-size: 70px; float: left; display: contents; font-family: serif"><a href="/">ひと言掲示板!</a></h1>
