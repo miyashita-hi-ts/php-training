@@ -1,9 +1,4 @@
 $(function(){
-    if (!Cookies.get('like_active_messages')) {
-        Cookies.set('like_active_messages', []);
-    }
-    var active_messages = Cookies.get('like_active_messages');
-    console.log(active_messages.push(1));
     var $good = $('.btn-like'), //いいねボタンセレクタ
                 goodPostId, //投稿ID
                 isActive;
@@ -35,22 +30,8 @@ $(function(){
             $this.children('i').toggleClass('active');
             $this.toggleClass('active');
 
-            if (isActive) {
-                active_messages.push(goodPostId);
-                Cookies.set('like_active_messages', active_messages);
-            } else {
-                for (i = 0; i < active_messages.length; i++) {
-                    if (active_messages[i] == goodPostId) {
-                        active_messages.splice(i, 1);
-                    }
-                }
-                Cookies.set('like_active_messages', active_messages);
-            }
-            console.log(Cookies.get('like_active_messages'));
         }).fail(function(msg) {
             console.log('Ajax Error');
         });
     });
 });
-
-console.log(Cookies.get('like_active_messages'));

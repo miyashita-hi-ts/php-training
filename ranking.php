@@ -44,7 +44,7 @@ if( !empty($_POST['btn_submit']) ) {
 if( !empty($pdo) ) {
 
     // メッセージのデータを取得する
-    $sql = "SELECT * FROM message ORDER BY post_date DESC";
+    $sql = "SELECT * FROM message ORDER BY like_count DESC";
     $message_array = $pdo->query($sql);
 }
 
@@ -55,7 +55,7 @@ $pdo = null;
 
 
 
-<h1>ひと言掲示板 管理ページ</h1>
+<h1>ひと言掲示板 ランキング</h1>
 <?php if( !empty($error_message) ): ?>
     <ul class="error_message">
 		<?php foreach( $error_message as $value ): ?>
@@ -75,7 +75,7 @@ $pdo = null;
         <input type="text" name="search_message" placeholder="メッセージ検索">
         <!-- 送信ボタンを用意する -->
         <input type="submit" name="search_submit_message" value="&#xf002">
-    </form>
+</form>
 
 
 
@@ -97,7 +97,7 @@ $pdo = null;
         <p><a href="edit.php?message_id=<?php echo $value['id']; ?>">編集</a>  <a href="delete.php?message_id=<?php echo $value['id']; ?>">削除</a></p>
     </div>
     <p><?php echo nl2br( htmlspecialchars( $value['message'], ENT_QUOTES, 'UTF-8') ); ?></p>
-<section class="post" data-message_id="<?php echo htmlspecialchars($value['id'], ENT_QUOTES, 'UTF-8'); ?>">
+    <section class="post" data-message_id="<?php echo htmlspecialchars($value['id'], ENT_QUOTES, 'UTF-8'); ?>">
     <div class="btn-like <?php if(in_array($value['id'], $_SESSION['like_list'])) echo 'active'; ?>">
         <!-- 自分がいいねした投稿にはハートのスタイルを常に保持する -->
         <i class="fa-heart fa-lg px-16

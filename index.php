@@ -85,7 +85,7 @@ if( !empty($_POST['btn_submit']) ) {
         }
 
         if( $res ) {
-          $_SESSION['success_message'] = 'メッセージを書き込みました。';
+            $_SESSION['success_message'] = 'メッセージを書き込みました。';
         } else {
             $error_message[] = '書き込みに失敗しました。';
         }
@@ -100,10 +100,18 @@ if( !empty($pdo) ) {
     // メッセージのデータを取得する
     $sql = "SELECT view_name,message,post_date FROM message ORDER BY post_date DESC";
     $message_array = $pdo->query($sql);
+
+    $sql_ranking = "SELECT * FROM message ORDER BY like_count DESC";
+    $ranking_array = $pdo->query($sql);
+
+
 }
 // データベースの接続を閉じる
 $pdo = null;
 ?>
+
+
+
 
 
 <h1>ひと言掲示板</h1>
@@ -119,6 +127,20 @@ $pdo = null;
 	</ul>
 <?php endif; ?>
 
+<!-- <label for="search">表示名検索</label> -->
+<form id ="search" method="get" action="./search.php" class="search_container">
+    <input type="text" name="search_name" placeholder="表示名検索">
+    <!-- 送信ボタンを用意する -->
+    <input type="submit" name="search_submit_name" value="&#xf002">
+</form>
+<form id ="search" method="get" action="./search.php" class="search_container">
+        <input type="text" name="search_message" placeholder="メッセージ検索">
+        <!-- 送信ボタンを用意する -->
+        <input type="submit" name="search_submit_message" value="&#xf002">
+</form>
+
+
+
 <form method="post">
 	<div>
 		<label for="view_name">表示名</label>
@@ -131,7 +153,9 @@ $pdo = null;
 	<input type="submit" name="btn_submit" value="書き込む">
 </form>
 
-<section>
+<div class="section">
+<section class ="message_array">
+    <h2 style="font-size: 25px">新規投稿一覧</h2>
 <?php if (!empty($message_array)) {
     ?>
 <?php foreach ($message_array as $value) {
@@ -148,6 +172,40 @@ $pdo = null;
 <?php
 } ?>
 </section>
+
+<!-- ランキング表示 -->
+<section class="ranking_array">
+<h2>人気のある投稿</h2>
+<?php if (!empty($ranking_array)) {
+    ?>
+<?php foreach ($ranking_array as $value) {
+        ?>
+<article>
+    <div class="info">
+        <h2><?php echo htmlspecialchars($value['view_name'], ENT_QUOTES, 'UTF-8'); ?></h2>
+        <time><?php echo date('Y年m月d日 H:i', strtotime($value['post_date'])); ?></time>
+    </div>
+    <p><?php echo nl2br(htmlspecialchars($value['message'], ENT_QUOTES, 'UTF-8')); ?></p>
+    <section class="post" data-message_id="<?php echo htmlspecialchars($value['id'], ENT_QUOTES, 'UTF-8'); ?>">
+    <div class="btn-like <?php if(in_array($value['id'], $_SESSION['like_list'])) echo 'active'; ?>">
+        <!-- 自分がいいねした投稿にはハートのスタイルを常に保持する -->
+        <i class="fa-heart fa-lg px-16
+        <?php
+            if(in_array($value['id'], $_SESSION['like_list'])){ //いいね押したらハートが塗りつぶされる
+                echo ' active fas';
+            }else{ //いいねを取り消したらハートのスタイルが取り消される
+                echo ' far';
+            }; ?>"></i>
+        <span><?php echo $value['like_count']; ?></span>
+    </div>
+</section>
+</article>
+<?php
+    } ?>
+<?php
+} ?>
+</section>
+</div>
 </body>
 
 

@@ -388,6 +388,72 @@ article.reply::before {
     --text-color: #fff;
 }
 
+
+.serch_form {
+    margin: 0 10px 10px 0;
+    text-align: right;
+    float: right;
+}
+
+// ======================================
+// 検索フォーム
+// ======================================
+
+.search_container{
+    box-sizing: border-box;
+    position: relative;
+    border: 1px solid #999;
+    display: block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    height: 2.3em;
+    width: 260px;
+    overflow: hidden;
+  }
+  .search_container input[type="text"]{
+    border: none;
+    height: 2.0em;
+  }
+  .search_container input[type="text"]:focus {
+    outline: 0;
+  }
+  .search_container input[type="submit"]{
+    cursor: pointer;
+    font-family: FontAwesome;
+    font-size: 1.3em;
+    border: none;
+    background: none;
+    color: #3879D9;
+    position: relative;
+    width: 2.5em;
+    height: 2.5em;
+    right: 0;
+    top: -10px;
+    outline : none;
+  }
+
+.section {
+    width: 1110px;
+    margin:0 auto;
+}
+
+
+.message_array { 
+    width:720px;
+    min-height:500px;
+    height:auto;
+    float: left;
+    margin-top:10px;
+    }
+
+.ranking_array {
+    width:250px;
+    min-height:500px;
+    height:auto ;
+    float:right;
+    margin-top:10px;
+    }
+
 h1 {
     color: var(--text-color);
 }
@@ -414,3 +480,4 @@ article {
 .btn-like .active{
     color: #f44336;
 }
+
