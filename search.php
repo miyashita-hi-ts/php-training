@@ -1,15 +1,8 @@
 <link href="custom.scss" rel="stylesheet">
 
 <?php
-
-// データベースの接続情報
-define( 'DB_HOST', 'localhost');
-define( 'DB_USER', 'root');
-define( 'DB_PASS', 'root');
-define( 'DB_NAME', 'board');
-
-// タイムゾーン設定
-date_default_timezone_set('Asia/Tokyo');
+include('./header.php');
+include('./config.php');
 
 // 変数の初期化
 $current_date = null;
@@ -70,15 +63,11 @@ $pdo = null;
 <?php endif; ?>
 
 <!-- 検索フォーム -->
-<div class="serch_form">
-    <label for="search">表示名検索</label>
-    <form id = "search" method="get">
-        <!-- 任意の<input>要素＝入力欄などを用意する -->
-        <input type="text" name="search_name">
+    <form id ="search" method="get" action="./search.php" class="search_container">
+        <input type="text" name="search_name" placeholder="表示名検索">
         <!-- 送信ボタンを用意する -->
-        <input type="submit" name="search_submit" value="名前を検索する">
+        <input type="submit" name="search_submit" value="&#xf002">
     </form>
-</div>
 
 <section>
 <?php if (!empty($stmt)) {
@@ -99,3 +88,5 @@ $pdo = null;
 </section>
 
 </body>
+
+<?php include('./footer.php'); ?>
