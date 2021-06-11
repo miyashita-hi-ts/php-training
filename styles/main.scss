@@ -307,12 +307,6 @@ article.reply::before {
     }
 }
 
-/* 通常モード */
-:root {
-    --body-bg: #fff;
-    --text-color: #000;
-}
-
 /* ダークモードOFF */
 .color-mode label:before {
     border: 2px solid #d0d0d0;
@@ -382,10 +376,18 @@ article.reply::before {
     cursor: pointer;
 }
 
+/* 通常モード */
+:root {
+    --body-bg: #e6e6e6;
+    --text-color: #000;
+    --backgroud-color: rgb(249, 249, 249);
+}
+
 /* ダークモード */
 [data-mode='dark'] {
-    --body-bg: #000;
+    --body-bg: #3b3b3b;
     --text-color: #fff;
+    --backgroud-color: rgb(207, 204, 205);
 }
 
 
@@ -442,4 +444,9 @@ body {
 
 article {
     color: var(--text-color);
+    background: var(--backgroud-color);
+}
+
+label {
+  color: var(--text-color);
 }
