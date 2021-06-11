@@ -13,6 +13,7 @@ $res = null;
 $option = null;
 
 session_start();
+
 if( !empty($_GET['btn_logout']) ) {
 	unset($_SESSION['admin_login']);
 }
@@ -53,6 +54,7 @@ $pdo = null;
 ?>
 
 
+
 <h1>ひと言掲示板 管理ページ</h1>
 <?php if( !empty($error_message) ): ?>
     <ul class="error_message">
@@ -83,6 +85,19 @@ $pdo = null;
         <p><a href="edit.php?message_id=<?php echo $value['id']; ?>">編集</a>  <a href="delete.php?message_id=<?php echo $value['id']; ?>">削除</a></p>
     </div>
     <p><?php echo nl2br( htmlspecialchars( $value['message'], ENT_QUOTES, 'UTF-8') ); ?></p>
+    <section class="post" data-message_id="<?php echo htmlspecialchars($value['id'], ENT_QUOTES, 'UTF-8'); ?>">
+    <div class="btn-like <?php if(in_array($value['id'], $_SESSION['like_list'])) echo 'active'; ?>">
+        <!-- 自分がいいねした投稿にはハートのスタイルを常に保持する -->
+        <i class="fa-heart fa-lg px-16
+        <?php
+            if(in_array($value['id'], $_SESSION['like_list'])){ //いいね押したらハートが塗りつぶされる
+                echo ' active fas';
+            }else{ //いいねを取り消したらハートのスタイルが取り消される
+                echo ' far';
+            }; ?>"></i>
+        <span><?php echo $value['like_count']; ?></span>
+    </div>
+</section>
 </article>
 <?php } ?>
 <?php } ?>

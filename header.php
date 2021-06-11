@@ -2,6 +2,7 @@
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
 <link href="./styles/main.scss" rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
 <body>
 <div class="color-mode">
