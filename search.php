@@ -38,31 +38,17 @@ try {
     $error_message[] = $e->getMessage();
 }
 
-// if( !empty($_POST['search_submit']) ) {
-// 	if( empty($error_message) ) {
-//         try {
-//             if( !empty($pdo) ) {
-//       // メッセージのデータを取得する
-//               // $sql = "SELECT view_name,message,post_date FROM message WHERE view_name LIKE '%" . $_POST["search_name"] . "%' ORDER BY post_date DESC";
-//               // $sql = "SELECT view_name,message,post_date FROM message ORDER BY post_date DESC";
-//               // $search_message_array = $pdo->query($sql); 
-//             }
-//         } catch(Exception $e) {
-//             // エラーが発生した時はロールバック
-//             $pdo->rollBack();
-//         }
-//         header('Location: ./search.php');
-//         exit;
-// 	}
-// }
+if( !empty($_GET['search_submit']) ) {
+    try {
+        $stmt = $pdo->prepare("SELECT view_name,message,post_date FROM message WHERE view_name LIKE ? ESCAPE '!' ORDER BY post_date DESC");
+        $stmt->bindValue(1, '%' . $_GET["search_name"] . '%', PDO::PARAM_STR);
+        $stmt->execute();
+    } catch(Exception $e) {
+        // エラーが発生した時はロールバック
+        $pdo->rollBack();
+    }
+}
 
-        try {
-            $sql = "SELECT view_name,message,post_date FROM message WHERE view_name LIKE '%" . $_GET["search_name"] . "%' ORDER BY post_date DESC";
-            $search_message_array = $pdo->query($sql); 
-        } catch(Exception $e) {
-            // エラーが発生した時はロールバック
-            $pdo->rollBack();
-        }
 
 
 // データベースの接続を閉じる
@@ -95,9 +81,9 @@ $pdo = null;
 </div>
 
 <section>
-<?php if (!empty($search_message_array)) {
+<?php if (!empty($stmt)) {
     ?>
-<?php foreach ($search_message_array as $value) {
+<?php foreach ($stmt as $value) {
         ?>
 <article>
     <div class="info">
