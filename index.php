@@ -119,8 +119,6 @@ $pdo = null;
 <?php endif; ?>
 
 
-
-<form method="post">
 	<div>
 		<label for="view_name">表示名</label>
 		<input id="view_name" type="text" name="view_name" value="<?php if( !empty($_SESSION['view_name']) ){ echo htmlspecialchars( $_SESSION['view_name'], ENT_QUOTES, 'UTF-8'); } ?>">
@@ -129,10 +127,9 @@ $pdo = null;
 		<label for="message">ひと言メッセージ</label>
 		<textarea id="message" name="message"><?php if( !empty($message) ){ echo htmlspecialchars( $message, ENT_QUOTES, 'UTF-8'); } ?></textarea>
   </div>
-	<input type="submit" name="btn_submit" value="書き込む">
-</form>
+  <button id="ajax" name="btn_submit">書き込む</button>
 
-<section>
+<section id="logList">
 <?php if (!empty($message_array)) {
     ?>
 <?php foreach ($message_array as $value) {
