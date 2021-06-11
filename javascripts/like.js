@@ -3,8 +3,6 @@ $(function(){
         Cookies.set('like_active_messages', "");
     }
     var active_messages = Cookies.get('like_active_messages').split(';');
-    console.log(active_messages);
-    console.log($('section[data-message_id="' + active_messages[1] + '"]').text);
     active_messages.forEach(message_id => {
         if ($('section[data-message_id="' + message_id + '"]')) {
             $selector = $('section[data-message_id="' + message_id + '"]')
@@ -56,11 +54,8 @@ $(function(){
                 }
                 Cookies.set('like_active_messages', active_messages.join(';'));
             }
-            console.log(Cookies.get('like_active_messages'));
         }).fail(function(msg) {
             console.log('Ajax Error');
         });
     });
 });
-
-console.log(Cookies.get('like_active_messages'));
