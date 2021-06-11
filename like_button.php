@@ -11,10 +11,12 @@ $sql = null;
 $pdo = null;
 $option = null;
 $stmt = null;
+$stmt2 = null;
 
 session_start();
 
 if (isset($_POST['messageId'])) {
+    $is_active =  json_decode($_POST['isActive']); // 良いねしてるかどうか
     // データベースに接続
     try {
         $option = array(
@@ -23,26 +25,29 @@ if (isset($_POST['messageId'])) {
         );
         $pdo = new PDO('mysql:charset=UTF8;dbname='.DB_NAME.';host='.DB_HOST, DB_USER, DB_PASS, $option);
 
-        if ($_POST['isActive']) {
-            $stmt = $pdo->prepare("UPDATE message SET like_count = like_count-1 WHERE id = :id");
-        } else {
+        // 良いね数の更新
+        if ($is_active) {
             $stmt = $pdo->prepare("UPDATE message SET like_count = like_count+1 WHERE id = :id");
+        } else {
+            $stmt = $pdo->prepare("UPDATE message SET like_count = like_count-1 WHERE id = :id");
         }
         $stmt->bindValue( ':id', $_POST['messageId'], PDO::PARAM_INT);
 
         // SQLクエリの実行
         $stmt->execute();
 
-        $stmt = $pdo->prepare("SELECT like_count FROM message WHERE id = :id");
-        $stmt->bindValue( ':id', $_POST['messageId'], PDO::PARAM_INT);
-        $stmt->execute();
-        $like_count = $stmt->fetch();
-
-        $_SESSION['like_list'][$_POST['messageId']] = $like_count;
+        // 良いね数の取得
+        $stmt2 = $pdo->prepare("SELECT like_count FROM message WHERE id = :id");
+        $stmt2->bindValue( ':id', $_POST['messageId'], PDO::PARAM_INT);
+        $stmt2->execute();
+        $like_count = $stmt2->fetch();
 
         // データベースの接続を閉じる
         $stmt = null;
         $pdo = null;
+
+        var_dump($like_count["like_count"]);
+
     } catch (PDOException $e) {
         exit;
         // 管理者ページへリダイレクト
