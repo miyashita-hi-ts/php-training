@@ -96,7 +96,7 @@ $pdo = null;
 ?>
 
 <body>
-<h1>ひと言掲示板 管理ページ（投稿の削除）</h1>
+<h1>管理ページ（投稿の削除）</h1>
 <?php if( !empty($error_message) ): ?>
     <ul class="error_message">
 		<?php foreach( $error_message as $value ): ?>
