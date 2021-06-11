@@ -145,7 +145,16 @@ $pdo = null;
 	<input type="submit" name="btn_submit" value="書き込む">
 </form>
 
-<p><a href="search.php">検索はこちらから</a></p>
+<!-- <p><a href="search.php">検索はこちらから</a></p> -->
+
+<div class="serch_form">
+    <label for="search">表示名検索</label>
+    <form id ="search" method="get" action="./search.php">
+        <input type="text" name="search_name">
+        <!-- 送信ボタンを用意する -->
+        <input type="submit" name="search_submit" value="名前を検索する">
+    </form>
+</div>
 
 
 

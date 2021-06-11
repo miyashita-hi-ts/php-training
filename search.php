@@ -56,8 +56,14 @@ try {
 // 	}
 // }
 
-              $sql = "SELECT view_name,message,post_date FROM message WHERE view_name LIKE '%" . $_POST["search_name"] . "%' ORDER BY post_date DESC";
-              $search_message_array = $pdo->query($sql); 
+        try {
+            $sql = "SELECT view_name,message,post_date FROM message WHERE view_name LIKE '%" . $_GET["search_name"] . "%' ORDER BY post_date DESC";
+            $search_message_array = $pdo->query($sql); 
+        } catch(Exception $e) {
+            // エラーが発生した時はロールバック
+            $pdo->rollBack();
+        }
+
 
 // データベースの接続を閉じる
 $pdo = null;
@@ -80,7 +86,7 @@ $pdo = null;
 <!-- 検索フォーム -->
 <div class="serch_form">
     <label for="search">表示名検索</label>
-    <form id = "search" method="post">
+    <form id = "search" method="get">
         <!-- 任意の<input>要素＝入力欄などを用意する -->
         <input type="text" name="search_name">
         <!-- 送信ボタンを用意する -->
