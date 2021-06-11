@@ -59,8 +59,6 @@ if( !empty($_GET['search_submit_message']) ) {
 $pdo = null;
 ?>
 
-<body>
-<h1>ひと言掲示板</h1>
 <?php if( empty($_POST['btn_submit']) && !empty($_SESSION['success_message']) ): ?>
     <p class="success_message"><?php echo htmlspecialchars( $_SESSION['success_message'], ENT_QUOTES, 'UTF-8'); ?></p>
     <?php unset($_SESSION['success_message']); ?>
@@ -72,19 +70,6 @@ $pdo = null;
 		<?php endforeach; ?>
 	</ul>
 <?php endif; ?>
-
-<!-- 検索フォーム -->
-    <form id ="search" method="get" action="./search.php" class="search_container">
-        <input type="text" name="search_name" placeholder="表示名検索">
-        <!-- 送信ボタンを用意する -->
-        <input type="submit" name="search_submit_name" value="&#xf002">
-    </form>
-
-    <form id ="search" method="get" action="./search.php" class="search_container">
-        <input type="text" name="search_message" placeholder="メッセージ検索">
-        <!-- 送信ボタンを用意する -->
-        <input type="submit" name="search_submit_message" value="&#xf002">
-    </form>
 
 <section>
 <?php if (!empty($stmt)) { ?>

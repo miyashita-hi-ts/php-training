@@ -53,7 +53,7 @@ $pdo = null;
 ?>
 
 
-<h1>ひと言掲示板 管理ページ</h1>
+<h1>管理ページ</h1>
 <?php if( !empty($error_message) ): ?>
     <ul class="error_message">
 		<?php foreach( $error_message as $value ): ?>
@@ -64,17 +64,6 @@ $pdo = null;
 <section>
 
 <?php if( !empty($_SESSION['admin_login']) && $_SESSION['admin_login'] === true ): ?>
-<form id ="search" method="get" action="./search.php" class="search_container">
-    <input type="text" name="search_name" placeholder="表示名検索">
-    <!-- 送信ボタンを用意する -->
-    <input type="submit" name="search_submit_name" value="&#xf002">
-</form>
-<form id ="search" method="get" action="./search.php" class="search_container">
-        <input type="text" name="search_message" placeholder="メッセージ検索">
-        <!-- 送信ボタンを用意する -->
-        <input type="submit" name="search_submit_message" value="&#xf002">
-    </form>
-
 
 
 <form method="get" action="./download.php">
