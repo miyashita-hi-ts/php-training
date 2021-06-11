@@ -306,3 +306,96 @@ article.reply::before {
         height: 70px;
     }
 }
+
+/* 通常モード */
+:root {
+    --body-bg: #fff;
+    --text-color: #000;
+}
+
+/* ダークモードOFF */
+.color-mode label:before {
+    border: 2px solid #d0d0d0;
+    border-right: 0;
+    border-radius: 50px 0 0 50px;
+    padding: 9px 5px;
+    content: '暗';
+    background: #fff;
+    color: #777;
+    font-weight: normal;
+    width: 10px;
+    text-align: center;
+    display: inline-block;
+}
+/* ライトモードON*/
+.color-mode label:after {
+    border: 2px solid #d3aa02;
+    border-left: 0;
+    border-radius: 0 50px 50px 0;
+    padding: 9px 5px;
+    content: '明';
+    background: #ffe168;
+    color: #333333;
+    width: 10px;
+    text-align: center;
+    display: inline-block;
+
+}
+.color-mode input + label:hover:before {
+    background: #ffffff;
+    color: #777777;
+}
+/* ダークモードON */
+.color-mode input:checked + label:before {
+    border: 2px solid #3372df;
+    border-right: 0;
+    background: #34b8f8;
+    color: #000;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+}
+
+/* ライトモード OFF */
+.color-mode input:checked + label:after {
+    border: 2px solid #d0d0d0;
+    border-left: 0;
+    background: #fff;
+    font-weight: normal;
+}
+.color-mode input:checked + label:hover:after {
+    background: #fff;
+}
+
+/* カラーモード切り替え */
+.color-mode {
+    margin: 0 10px 10px 0;
+    text-align: right;
+    float: right;
+}
+
+.color-mode input {
+    display: none;
+}
+.color-mode label {
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* ダークモード */
+[data-mode='dark'] {
+    --body-bg: #000;
+    --text-color: #fff;
+}
+
+h1 {
+    color: var(--text-color);
+}
+
+body {
+    background: var(--body-bg);
+}
+
+article {
+    color: var(--text-color);
+}
