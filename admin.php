@@ -12,6 +12,7 @@ $stmt = null;
 $res = null;
 $option = null;
 
+
 session_start();
 
 if( !empty($_GET['btn_logout']) ) {
